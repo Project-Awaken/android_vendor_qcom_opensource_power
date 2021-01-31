@@ -133,26 +133,12 @@ ndk::ScopedAStatus Power::isModeSupported(Mode type, bool* _aidl_return) {
 
 ndk::ScopedAStatus Power::setBoost(Boost type, int32_t durationMs) {
     LOG(INFO) << "Power setBoost: " << static_cast<int32_t>(type) << ", duration: " << durationMs;
-    switch (type) {
-        case Boost::INTERACTION:
-            power_hint(POWER_HINT_INTERACTION, NULL);
-            break;
-        default:
-            break;
-    }
     return ndk::ScopedAStatus::ok();
 }
 
 ndk::ScopedAStatus Power::isBoostSupported(Boost type, bool* _aidl_return) {
     LOG(INFO) << "Power isBoostSupported: " << static_cast<int32_t>(type);
-    switch (type) {
-        case Boost::INTERACTION:
-            *_aidl_return = true;
-            break;
-        default:
-            *_aidl_return = false;
-            break;
-    }
+    *_aidl_return = false;
     return ndk::ScopedAStatus::ok();
 }
 
